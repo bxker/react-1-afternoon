@@ -23,10 +23,12 @@ export default class FilterObject extends Component {
             userInput: '',
             filteredArray: []
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.filterResults = this.filterResults.bind(this)
     }
 
-    handleChange(val) {
-        this.setState({ userInput: val });
+    handleChange(e) {
+        this.setState({ userInput: e.target.value });
     }
     
 
@@ -48,7 +50,7 @@ export default class FilterObject extends Component {
             <div className="puzzleBox filterObjectPB">
                 <h4> Filter Object </h4>
                 <span className="puzzleText"> Original: { JSON.stringify(this.state.unFilteredArray, null, 10) } </span>
-                <input className="inputLine" onChange={ (e) => this.handleChange(e.target.value) }></input>
+                <input className="inputLine" onChange={this.handleChange}></input>
                 <button className="confirmationButton" onClick={ () => this.filterResults(this.state.userInput) }> Filter </button>
                 <span className="resultsBox filterObjectRB"> Filtered: { JSON.stringify(this.state.filteredArray, null, 10) } </span>
             </div>
